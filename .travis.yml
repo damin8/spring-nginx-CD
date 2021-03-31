@@ -17,4 +17,3 @@ before_install:
 notifications:
   email:
     recipients:
-      damindamin8@gmail.com
