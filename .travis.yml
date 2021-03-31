@@ -29,9 +29,6 @@ deploy:
     local_dir: deploy
     wait-until-deployed: true
 
-before_install:
-  chmod +x gradlew
-
 notifications:
   email:
     recipients:
