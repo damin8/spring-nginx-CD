@@ -16,9 +16,7 @@ before_install:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r spring-nginx-CD ./*
-  - mkdir -p deploy
-  - mv spring-nginx-CD.zip deploy/spring-nginx-CD.zip
+  - zip -r spring-nginx-CD *
 
 deploy:
   - provider: s3
