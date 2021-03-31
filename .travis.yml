@@ -15,17 +15,10 @@ before_install:
 
 script: "./gradlew clean build"
 
-deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY 
-    secret_access_key: $AWS_SECRET_KEY
-  
-    bucket: springboot-build-helloworld
-    region: ap-northeast-2
-    skip_cleanup: true
-    acl:private
-    local_dir: deploy
-    wait-until-deployed: true
+before_deploy:
+  - zip -r spring-nginx-CD *
+  - mkdir -p deploy
+  - mv spring-nginx-CD.zip deploy/spring-nginx-CD.zip
 
 notifications:
   email:
