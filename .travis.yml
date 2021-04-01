@@ -19,17 +19,31 @@ before_deploy:
   - zip -r spring-nginx-CD *
   - mkdir -p deploy
   - mv spring-nginx-CD.zip deploy/spring-nginx-CD.zip
-  
+
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY 
+    access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-  
+
     bucket: springboot-build-helloworld
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
     local_dir: deploy
+    wait-until-deployed: true
+    on:
+      all_branches: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    bucket: springboot-build-helloworld
+    key: spring-nginx-CD.zip
+    bundle_type: zip
+    application: springboot-nginx-cd
+    deployment_group: springboot-nginx-CD-group
+    region: ap-northeast-2
     wait-until-deployed: true
     on:
       all_branches: true
