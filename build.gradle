@@ -6,8 +6,14 @@ plugins {
 }
 
 group = 'com.hours22.cd'
-version = '0.0.1'
+version = '0.0.1-' + getDate()
 sourceCompatibility = '1.8'
+
+static def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
 
 configurations {
     compileOnly {
