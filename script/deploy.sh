@@ -5,6 +5,8 @@ PROJECT_NAME=spring-nginx-CD
 
 echo "> Build 파일 복사"
 
+chmod +x $REPOSITORY/zip/*.war
+
 cp $REPOSITORY/zip/*.war $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
